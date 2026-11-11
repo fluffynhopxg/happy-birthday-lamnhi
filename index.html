@@ -36,7 +36,7 @@
         }
         h1 {
             font-size: 1.8rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #ff6584;
         }
         .subtitle {
@@ -56,6 +56,43 @@
             color: #ff6584;
             font-weight: bold;
         }
+        /* Interactive Button */
+        .btn-gift {
+            background: linear-gradient(135deg, #ff6584 0%, #ff8da1 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 101, 132, 0.4);
+        }
+        .btn-gift:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 101, 132, 0.6);
+        }
+        /* Hidden surprise box */
+        .surprise-box {
+            display: none;
+            background: rgba(255, 101, 132, 0.1);
+            border: 1px dashed #ff6584;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        audio {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
         .signature {
             margin-top: 30px;
             font-size: 1.1rem;
@@ -71,17 +108,9 @@
             z-index: 1;
         }
         @keyframes float {
-            0% {
-                transform: translateY(100vh) scale(0.8);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-10vh) scale(1.2);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
     </style>
 </head>
@@ -102,10 +131,22 @@
             <p>Even though miles and an ocean separate Brazil and Vietnam, distance means nothing when someone means everything to me.</p>
             <br>
             <p>Today is all about celebrating <span class="highlight">you</span> — your smile, your kind heart, and the light you bring into my life every single day. Long calls, different time zones, and screen pixels could never change how deeply I care about you.</p>
-            <br>
-            <p>I hope your day is filled with so much happiness, delicious food, and wonderful moments. I am counting down the days until we can finally close this distance.</p>
-            <br>
-            <p style="text-align: center; color: #ff6584; font-weight: bold;">Anh yêu em rất nhiều! ❤️</p>
+        </div>
+
+        <!-- Interactive Surprise Section -->
+        <button class="btn-gift" onclick="revealSurprise()">Click to open your special gift 🎁</button>
+
+        <div id="surprise" class="surprise-box">
+            <p style="color: #ff8da1; font-weight: bold; margin-bottom: 10px;">A secret message just for you! 🎙️</p>
+            <p style="font-size: 0.95rem; margin-bottom: 10px;">Press play to listen to my voice:</p>
+            
+            <!-- COLOQUE O LINK DO SEU ÁUDIO NO LUGAR DE 'seu-audio.mp3' ABAIXO -->
+            <audio controls>
+                <source src="seu-audio.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            
+            <p style="margin-top: 15px; color: #ff6584; font-weight: bold;">Anh yêu em rất nhiều! ❤️</p>
         </div>
 
         <div class="signature">
@@ -113,6 +154,15 @@
             Jonas
         </div>
     </div>
+
+    <script>
+        function revealSurprise() {
+            var box = document.getElementById("surprise");
+            box.style.display = "block";
+            // Rola suavemente para a surpresa aparecer na tela do celular
+            box.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
