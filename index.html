@@ -12,7 +12,7 @@
         }
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: radial-gradient(circle at center, #1f1b24 0%, #121017 100%);
+            background: radial-gradient(circle at center, #130f1c 0%, #09070d 100%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -23,7 +23,7 @@
             position: relative;
         }
 
-        /* Floating background hearts generator */
+        /* Floating background hearts */
         .hearts-container {
             position: absolute;
             top: 0;
@@ -36,47 +36,67 @@
         }
         .floating-heart {
             position: absolute;
-            bottom: -20px;
-            color: rgba(255, 101, 132, 0.25);
-            font-size: 1.5rem;
-            animation: riseUp 7s infinite ease-in;
+            bottom: -30px;
+            color: rgba(255, 101, 132, 0.2);
+            font-size: 1.4rem;
+            animation: riseUp 8s infinite ease-in;
         }
         @keyframes riseUp {
-            0% {
-                transform: translateY(0) scale(0.6) rotate(0deg);
-                opacity: 0;
-            }
-            20% { opacity: 0.8; }
-            100% {
-                transform: translateY(-105vh) scale(1.3) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.7; }
+            100% { transform: translateY(-110vh) scale(1.4) rotate(360deg); opacity: 0; }
         }
 
-        /* Main Card */
-        .card {
+        /* Initial Security / Connection Screen */
+        #welcome-screen {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 101, 132, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 101, 132, 0.3);
             border-radius: 24px;
-            padding: 35px 25px;
-            max-width: 580px;
+            padding: 40px 30px;
+            max-width: 480px;
             width: 100%;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+        #welcome-screen h2 {
+            font-size: 1.5rem;
+            color: #ff6584;
+            margin-bottom: 15px;
+        }
+        #welcome-screen p {
+            color: #a0aec0;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* Main App Container (Hidden initially) */
+        #main-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 101, 132, 0.25);
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 620px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
             text-align: center;
             position: relative;
             z-index: 2;
-            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: scaleUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        @keyframes popIn {
-            0% { transform: scale(0.9); opacity: 0; }
+        @keyframes scaleUp {
+            0% { transform: scale(0.85); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
 
         h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
+            font-size: 1.9rem;
+            margin-bottom: 6px;
             background: linear-gradient(135deg, #ff6584 0%, #ff8da1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -84,36 +104,75 @@
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #b8c1ec;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-style: italic;
         }
 
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0aec0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: #ff6584;
+            color: white;
+            border-color: #ff6584;
+            box-shadow: 0 4px 15px rgba(255, 101, 132, 0.4);
+        }
+
+        /* Tab Content Panes */
+        .tab-pane {
+            display: none;
+            text-align: left;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .message-box {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.25);
             border-left: 3px solid #ff6584;
             padding: 20px;
             border-radius: 0 12px 12px 0;
-            text-align: left;
-            margin-bottom: 25px;
-            font-size: 1.02rem;
+            font-size: 1rem;
             line-height: 1.7;
             color: #e2e8f0;
+            margin-bottom: 15px;
         }
-
         .highlight {
             color: #ff6584;
             font-weight: 600;
         }
 
-        /* Interactive Gift Button */
-        .btn-gift {
+        /* Buttons & Interactivity */
+        .btn-custom {
             background: linear-gradient(135deg, #ff6584 0%, #e84545 100%);
             color: white;
             border: none;
-            padding: 14px 28px;
-            font-size: 1.05rem;
+            padding: 12px 26px;
+            font-size: 1rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
@@ -122,89 +181,111 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            margin-top: 10px;
         }
-        .btn-gift:hover {
-            transform: translateY(-3px) scale(1.03);
+        .btn-custom:hover {
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 10px 25px rgba(255, 101, 132, 0.6);
         }
-        .btn-gift:active {
-            transform: translateY(1px);
-        }
 
-        /* Hidden Surprise Box */
-        .surprise-box {
-            display: none;
-            background: rgba(255, 101, 132, 0.08);
-            border: 1px dashed rgba(255, 101, 132, 0.5);
+        /* Audio Player Styling */
+        .audio-container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
             border-radius: 16px;
-            padding: 22px;
-            margin-top: 25px;
-            animation: fadeInDown 0.6s ease-in-out forwards;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .audio-wrapper {
-            margin-top: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px;
-            border-radius: 12px;
+            border: 1px dashed rgba(255, 101, 132, 0.4);
+            text-align: center;
         }
         audio {
             width: 100%;
+            margin-top: 12px;
             outline: none;
         }
 
+        /* Secret Note Box */
+        .secret-box {
+            background: rgba(255, 101, 132, 0.08);
+            border: 1px solid rgba(255, 101, 132, 0.3);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
         .signature {
-            margin-top: 30px;
-            font-size: 1.15rem;
+            margin-top: 25px;
+            font-size: 1.1rem;
             color: #ff6584;
             font-weight: bold;
+            text-align: center;
             letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Floating Background Hearts Animation -->
+    <!-- Floating Background Hearts -->
     <div class="hearts-container">
-        <div class="floating-heart" style="left: 10%; animation-delay: 0s; font-size: 1.2rem;">❤️</div>
-        <div class="floating-heart" style="left: 25%; animation-delay: 2s; font-size: 1.8rem;">💖</div>
-        <div class="floating-heart" style="left: 45%; animation-delay: 1s; font-size: 1.4rem;">💕</div>
-        <div class="floating-heart" style="left: 65%; animation-delay: 3.5s; font-size: 2rem;">❤️</div>
-        <div class="floating-heart" style="left: 80%; animation-delay: 1.8s; font-size: 1.1rem;">💗</div>
-        <div class="floating-heart" style="left: 92%; animation-delay: 4s; font-size: 1.6rem;">❤️</div>
+        <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+        <div class="floating-heart" style="left: 30%; animation-delay: 2s;">💖</div>
+        <div class="floating-heart" style="left: 50%; animation-delay: 1s;">💕</div>
+        <div class="floating-heart" style="left: 70%; animation-delay: 3.5s;">❤️</div>
+        <div class="floating-heart" style="left: 90%; animation-delay: 1.8s;">💗</div>
     </div>
 
-    <div class="card">
+    <!-- Step 1: Welcome / Connection Screen -->
+    <div id="welcome-screen">
+        <h2>Brazil 🇧🇷 ➔ Vietnam 🇻🇳</h2>
+        <p>A secure transmission across 17,000 kilometers has been requested for a very special person...</p>
+        <button class="btn-custom" onclick="startExperience()">Open Secure Link 🔓</button>
+    </div>
+
+    <!-- Step 2: Main Interactive App -->
+    <div id="main-content">
         <h1>Chúc mừng sinh nhật, Em yêu! 🎉</h1>
         <div class="subtitle">Happy Birthday to the most special person in my world.</div>
         
-        <div class="message-box">
-            <p>Even though miles and an ocean separate Brazil and Vietnam, distance means nothing when someone means everything to me.</p>
-            <br>
-            <p>Today is all about celebrating <span class="highlight">you</span> — your smile, your kind heart, and the radiant light you bring into my life every single day. Long calls, different time zones, and screen pixels could never change how deeply I care about you.</p>
+        <!-- Interactive Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'tab-letter')">💌 The Message</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-audio')">🎙️ Voice Note</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-secret')">✨ Secret Note</button>
         </div>
 
-        <!-- Interactive Surprise Button -->
-        <button class="btn-gift" onclick="revealSurprise()">
-            <span>Open your special gift</span> 🎁
-        </button>
+        <!-- Tab 1: Letter -->
+        <div id="tab-letter" class="tab-pane active">
+            <div class="message-box">
+                <p>Even though miles and an ocean separate Brazil and Vietnam, distance means nothing when someone means everything to me.</p>
+                <br>
+                <p>Today is all about celebrating <span class="highlight">you</span> — your smile, your kind heart, and the radiant light you bring into my life every single day. Long calls, different time zones, and screen pixels could never change how deeply I care about you.</p>
+            </div>
+            <p style="text-align: center; color: #ff8da1; font-size: 0.95rem; font-style: italic;">"No matter where we are, my favorite place is always wherever you are."</p>
+        </div>
 
-        <div id="surprise" class="surprise-box">
-            <p style="color: #ff8da1; font-weight: bold; margin-bottom: 8px; font-size: 1.05rem;">A secret message just for you! 🎙️</p>
-            <p style="font-size: 0.92rem; color: #cbd5e1; margin-bottom: 12px;">Press play to listen to my voice:</p>
-            
-            <div class="audio-wrapper">
+        <!-- Tab 2: Audio Note -->
+        <div id="tab-audio" class="tab-pane">
+            <div class="audio-container">
+                <p style="color: #ff8da1; font-weight: bold; margin-bottom: 5px;">A secret message recorded just for you 🎙️</p>
+                <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 15px;">Press play to listen to my voice:</p>
                 <audio controls>
                     <source src="audio.mp3" type="audio/mp3">
                     Your browser does not support the audio element.
                 </audio>
             </div>
-            
-            <p style="margin-top: 18px; color: #ff6584; font-weight: bold; font-size: 1.1rem;">Anh yêu em rất nhiều! ❤️</p>
+        </div>
+
+        <!-- Tab 3: Secret Note -->
+        <div id="tab-secret" class="tab-pane">
+            <div class="message-box" style="text-align: center;">
+                <p style="margin-bottom: 15px;">There is one final thing I want you to know...</p>
+                <button class="btn-custom" onclick="revealSecret()">Reveal Secret 🎁</button>
+                <div id="secret-reveal" class="secret-box">
+                    <p style="color: #ff8da1; font-weight: bold; font-size: 1.05rem; margin-bottom: 8px;">Anh yêu em rất nhiều! ❤️</p>
+                    <p style="font-size: 0.92rem; color: #e2e8f0;">I am counting down every single day until I can finally close this distance and celebrate with you in person.</p>
+                </div>
+            </div>
         </div>
 
         <div class="signature">
@@ -214,10 +295,35 @@
     </div>
 
     <script>
-        function revealSurprise() {
-            var box = document.getElementById("surprise");
+        function startExperience() {
+            var welcome = document.getElementById("welcome-screen");
+            var main = document.getElementById("main-content");
+            
+            welcome.style.opacity = "0";
+            setTimeout(function() {
+                welcome.style.display = "none";
+                main.style.display = "block";
+            }, 400);
+        }
+
+        function switchTab(evt, tabId) {
+            var panes = document.getElementsByClassName("tab-pane");
+            for (var i = 0; i < panes.length; i++) {
+                panes[i].classList.remove("active");
+            }
+            
+            var buttons = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function revealSecret() {
+            var box = document.getElementById("secret-reveal");
             box.style.display = "block";
-            box.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
