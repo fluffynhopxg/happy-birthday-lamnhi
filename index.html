@@ -4,339 +4,219 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday, Lâm Nhi! ❤️</title>
-    <!-- Google Fonts for Premium Typography -->
+    <!-- Premium Font Pairings -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #ff4b72;
-            --primary-light: #ff7592;
-            --bg-dark: #050308;
-            --glass-bg: rgba(20, 16, 25, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --primary: #ff3366;
+            --primary-glow: rgba(255, 51, 102, 0.5);
+            --bg-dark: #030205;
+            --glass: rgba(20, 15, 25, 0.45);
+            --glass-highlight: rgba(255, 255, 255, 0.12);
             --text-main: #f8fafc;
-            --text-muted: #a1a1aa;
+            --text-muted: #94a3b8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-            position: relative;
+            display: flex; justify-content: center; align-items: center;
+            padding: 20px; overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated Ambient Glowing Orbs */
-        .ambient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.5;
-            z-index: 0;
-            animation: floatOrb 20s infinite alternate ease-in-out;
+        /* 1. Fluid Aurora Background */
+        .aurora-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(45deg, #05020a, #1a0b1c, #0d0614);
+            background-size: 400% 400%;
+            animation: auroraShift 15s ease infinite;
+            z-index: 0; pointer-events: none;
         }
-        .orb-1 {
-            width: 400px; height: 400px;
-            background: rgba(255, 75, 114, 0.3);
-            top: -100px; left: -100px;
+        .aurora-orb {
+            position: absolute; border-radius: 50%; filter: blur(100px);
+            animation: orbFloat 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .orb-2 {
-            width: 500px; height: 500px;
-            background: rgba(110, 70, 255, 0.2);
-            bottom: -150px; right: -150px;
-            animation-delay: -5s;
-        }
-        @keyframes floatOrb {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.1); }
-        }
+        .orb-pink { width: 50vw; height: 50vw; background: rgba(255, 51, 102, 0.2); top: -10%; left: -10%; }
+        .orb-purple { width: 60vw; height: 60vw; background: rgba(120, 50, 255, 0.15); bottom: -20%; right: -10%; animation-delay: -5s; }
 
-        /* Hearts */
-        .hearts-container {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            overflow: hidden; z-index: 1; pointer-events: none;
-        }
-        .floating-heart {
-            position: absolute; bottom: -40px;
-            color: rgba(255, 75, 114, 0.2); font-size: 1.2rem;
-            animation: riseUp 12s infinite linear;
-        }
-        @keyframes riseUp {
-            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-115vh) scale(1.5) rotate(360deg); opacity: 0; }
-        }
+        @keyframes auroraShift { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+        @keyframes orbFloat { 0% {transform: translate(0, 0) scale(1);} 100% {transform: translate(10vw, 10vh) scale(1.2);} }
 
-        /* Glassmorphism Panels */
+        /* Floating Hearts */
+        .hearts-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; pointer-events: none; }
+        .floating-heart { position: absolute; bottom: -40px; color: rgba(255, 51, 102, 0.25); filter: drop-shadow(0 0 10px rgba(255,51,102,0.3)); animation: riseUp 12s infinite linear; }
+        @keyframes riseUp { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(-115vh) scale(1.5) rotate(360deg); opacity: 0; } }
+
+        /* 2. Spatial Glassmorphism (VisionOS Style) */
         .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid var(--glass-border);
-            border-top: 1px solid var(--glass-highlight); /* Light hitting top edge */
-            border-radius: 32px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05);
-            z-index: 10;
-            position: relative;
+            background: var(--glass);
+            backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+            border-radius: 36px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), inset 0 1px 1px var(--glass-highlight), inset 0 0 40px rgba(255,255,255,0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 10; position: relative;
+            transform-style: preserve-3d;
+        }
+        .glass-panel::before {
+            content: ""; position: absolute; inset: -1px; border-radius: 37px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.05) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            pointer-events: none;
         }
 
-        /* Initial Screen */
-        #welcome-screen {
-            padding: 50px 40px;
-            max-width: 460px; width: 100%;
-            text-align: center;
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        #welcome-screen h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--text-main);
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-        }
-        #welcome-screen p {
-            color: var(--text-muted);
-            font-size: 0.95rem; line-height: 1.6;
-            margin-bottom: 35px;
-            font-weight: 300;
-        }
+        /* Screens */
+        #welcome-screen { padding: 50px 40px; max-width: 440px; width: 100%; text-align: center; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        #welcome-screen h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; background: linear-gradient(135deg, #fff, #ffb6c1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        #welcome-screen p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 35px; }
 
-        /* Main App */
         #main-content {
-            display: none;
-            padding: 40px 35px;
-            max-width: 620px; width: 100%;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px) scale(0.98);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: none; padding: 40px 30px; max-width: 600px; width: 100%; text-align: center;
+            opacity: 0; transform: translateY(30px) scale(0.95); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        #main-content.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+        #main-content.visible { opacity: 1; transform: translateY(0) scale(1); }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.4rem;
-            margin-bottom: 5px;
-            background: linear-gradient(135deg, #fff 0%, #ffb6c1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-        .subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem; color: var(--primary-light);
-            margin-bottom: 30px; font-style: italic; opacity: 0.9;
-        }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.3rem; margin-bottom: 5px; background: linear-gradient(135deg, #fff 0%, #ff8da1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #ff8da1; margin-bottom: 30px; font-style: italic; }
 
-        /* Modern Tabs */
+        /* 3. Magnetic Tabs */
         .tabs {
-            display: flex; gap: 8px; margin-bottom: 30px;
-            background: rgba(0, 0, 0, 0.25);
-            padding: 6px; border-radius: 100px;
-            border: 1px solid rgba(255,255,255,0.03);
-            position: relative;
+            display: flex; gap: 6px; margin-bottom: 30px; background: rgba(0, 0, 0, 0.3);
+            padding: 6px; border-radius: 100px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
         }
         .tab-btn {
-            background: transparent; border: none;
-            color: var(--text-muted); padding: 12px 20px;
-            border-radius: 100px; cursor: pointer;
-            font-size: 0.9rem; font-weight: 500;
-            transition: all 0.4s ease; flex: 1;
-            z-index: 2; position: relative;
+            background: transparent; border: none; color: var(--text-muted); padding: 12px 15px;
+            border-radius: 100px; cursor: pointer; font-size: 0.9rem; font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); flex: 1;
         }
-        .tab-btn.active {
-            color: #fff; font-weight: 600;
-            background: rgba(255, 75, 114, 0.15);
-            box-shadow: inset 0 0 0 1px rgba(255, 75, 114, 0.3);
-        }
-        .tab-btn:hover:not(.active) { color: #fff; }
-
-        /* Content Panes */
-        .tab-pane {
-            display: none; text-align: left;
-            animation: fadeUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
+        .tab-btn.active { background: linear-gradient(135deg, var(--primary) 0%, #e83e60 100%); color: #fff; box-shadow: 0 4px 20px var(--primary-glow); }
+        .tab-pane { display: none; text-align: left; animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .tab-pane.active { display: block; }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
-        /* Message Box */
+        /* Message */
         .message-box {
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 20px; padding: 30px;
-            font-size: 1.05rem; line-height: 1.8;
-            color: rgba(255,255,255,0.9);
-            border: 1px solid rgba(255,255,255,0.04);
-            position: relative;
+            background: rgba(0, 0, 0, 0.2); border-radius: 24px; padding: 30px 25px;
+            font-size: 1.05rem; line-height: 1.8; color: rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.03); position: relative;
         }
-        .message-box::before {
-            content: '"'; position: absolute;
-            top: 10px; left: 15px; font-family: 'Playfair Display', serif;
-            font-size: 4rem; color: rgba(255, 75, 114, 0.15);
-            line-height: 1;
-        }
-        .highlight {
-            color: var(--primary-light);
-            font-weight: 600;
-        }
+        .message-box::before { content: '"'; position: absolute; top: 10px; left: 15px; font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(255, 51, 102, 0.15); line-height: 1; }
+        .highlight { color: #ff8da1; font-weight: 600; text-shadow: 0 0 10px rgba(255,141,161,0.3); }
 
-        /* Premium Button */
+        /* Spatial Button */
         .btn-custom {
             background: linear-gradient(135deg, var(--primary) 0%, #e83e60 100%);
-            color: white; border: none;
-            padding: 16px 32px; font-size: 1rem; font-weight: 600;
-            border-radius: 100px; cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 0 10px 25px rgba(255, 75, 114, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+            color: white; border: none; padding: 16px 32px; font-size: 1rem; font-weight: 600;
+            border-radius: 100px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px var(--primary-glow), inset 0 1px 1px rgba(255,255,255,0.3);
             width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
         }
-        .btn-custom:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255, 75, 114, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
-        }
-        .btn-custom:active { transform: translateY(1px); }
+        .btn-custom:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 40px var(--primary-glow), inset 0 1px 1px rgba(255,255,255,0.3); }
+        .btn-custom:active { transform: translateY(0) scale(0.98); }
 
-        /* CUSTOM AUDIO PLAYER (High-end UI) */
+        /* 4. Advanced Audio Player with Visualizer */
         .custom-player-wrapper {
-            background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 24px; padding: 25px;
-            display: flex; flex-direction: column; gap: 20px;
-            align-items: center; margin-top: 10px;
+            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 28px; padding: 30px 25px; display: flex; flex-direction: column; gap: 20px;
+            align-items: center; margin-top: 15px; box-shadow: inset 0 4px 20px rgba(0,0,0,0.5);
         }
-        .player-controls {
-            display: flex; align-items: center; gap: 20px; width: 100%;
-        }
+        .player-controls { display: flex; align-items: center; gap: 20px; width: 100%; }
         .play-btn {
-            width: 50px; height: 50px; border-radius: 50%;
-            background: var(--primary); color: #fff;
-            border: none; cursor: pointer;
-            display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 8px 20px rgba(255, 75, 114, 0.3);
-            transition: transform 0.2s;
+            width: 55px; height: 55px; border-radius: 50%; background: var(--primary); color: #fff;
+            border: none; cursor: pointer; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 10px 25px var(--primary-glow), inset 0 1px 1px rgba(255,255,255,0.3);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); flex-shrink: 0;
         }
-        .play-btn:hover { transform: scale(1.05); }
-        .play-btn svg { width: 20px; height: 20px; fill: currentColor; margin-left: 3px; }
+        .play-btn:hover { transform: scale(1.08); }
+        .play-btn svg { width: 22px; height: 22px; fill: currentColor; margin-left: 3px; }
         .play-btn.playing svg { margin-left: 0; }
         
-        .progress-container {
-            flex: 1; display: flex; flex-direction: column; gap: 8px;
-        }
-        .progress-bar {
-            width: 100%; height: 6px; background: rgba(255,255,255,0.1);
-            border-radius: 10px; cursor: pointer; position: relative;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%; width: 0%; background: var(--primary-light);
-            border-radius: 10px; transition: width 0.1s linear;
-        }
-        .time-info {
-            display: flex; justify-content: space-between;
-            font-size: 0.75rem; color: var(--text-muted); font-weight: 500;
-        }
-        audio { display: none; } /* Hide default ugly player */
-
-        /* Secret / Memories Area */
-        .secret-box {
-            display: none; animation: fadeUp 0.5s ease forwards;
-            margin-top: 20px;
-        }
+        .progress-container { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+        .progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; cursor: pointer; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8da1, var(--primary)); border-radius: 10px; transition: width 0.1s linear; }
         
-        /* Modern Gallery Grid */
-        .photo-scroll-container {
-            max-height: 400px; overflow-y: auto;
-            padding-right: 8px; margin-top: 20px;
-            /* Scrollbar styling */
-            scrollbar-width: thin; scrollbar-color: rgba(255,75,114,0.3) transparent;
-        }
+        /* Audio Soundwave (Fake CSS Visualizer) */
+        .visualizer { display: flex; gap: 4px; align-items: flex-end; height: 20px; justify-content: center; margin-bottom: 5px; opacity: 0; transition: opacity 0.3s; }
+        .visualizer.active { opacity: 1; }
+        .bar { width: 4px; background: var(--primary); border-radius: 2px; height: 4px; transition: height 0.1s ease; }
+        
+        audio { display: none; }
+
+        /* 5. Cascading Bento Gallery */
+        .secret-box { display: none; margin-top: 20px; }
+        .photo-scroll-container { max-height: 420px; overflow-y: auto; padding-right: 8px; margin-top: 20px; scrollbar-width: thin; scrollbar-color: var(--primary-glow) transparent; }
         .photo-scroll-container::-webkit-scrollbar { width: 4px; }
-        .photo-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,75,114,0.3); border-radius: 10px; }
+        .photo-scroll-container::-webkit-scrollbar-thumb { background: var(--primary-glow); border-radius: 10px; }
 
-        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        
         .photo-card {
-            background: rgba(0,0,0,0.3); border-radius: 16px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.03);
-            position: relative; cursor: pointer;
-            transition: all 0.3s ease;
+            background: rgba(0,0,0,0.5); border-radius: 20px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05); position: relative; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0; transform: translateY(20px); /* For stagger animation */
         }
-        .photo-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 75, 114, 0.4);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-        .photo-card img {
-            width: 100%; height: 160px; object-fit: contain;
-            background: #020104; display: block;
-            transition: transform 0.5s ease;
-        }
-        .photo-card:hover img { transform: scale(1.03); }
+        .photo-card.show { opacity: 1; transform: translateY(0); }
+        
+        .photo-card:hover { transform: translateY(-5px) scale(1.02); border-color: rgba(255, 51, 102, 0.4); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px var(--primary-glow); z-index: 5; }
+        .photo-card img { width: 100%; height: 160px; object-fit: contain; background: #020104; display: block; transition: transform 0.5s ease; }
+        .photo-card:hover img { transform: scale(1.05); }
         .photo-caption {
-            font-size: 0.8rem; color: var(--primary-light);
-            padding: 12px 10px; text-align: center; font-weight: 500;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
-            position: absolute; bottom: 0; width: 100%; backdrop-filter: blur(5px);
+            font-size: 0.8rem; color: #ff8da1; padding: 12px; text-align: center; font-weight: 600;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+            position: absolute; bottom: 0; width: 100%; backdrop-filter: blur(2px);
         }
 
-        /* Lightbox */
+        /* 6. Cinematic Lightbox */
         #lightbox {
-            display: none; position: fixed; z-index: 9999;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(2, 1, 4, 0.95);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(2, 1, 4, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             justify-content: center; align-items: center; flex-direction: column;
-            opacity: 0; transition: opacity 0.3s ease; padding: 20px;
+            opacity: 0; transition: opacity 0.4s ease; padding: 20px;
         }
         #lightbox.visible { opacity: 1; }
         #lightbox img {
-            max-width: 95%; max-height: 75vh; object-fit: contain;
-            border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.05);
+            max-width: 95%; max-height: 75vh; object-fit: contain; border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0,0,0,1), 0 0 40px var(--primary-glow);
+            border: 1px solid rgba(255,255,255,0.08); transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        #lightbox.visible img { transform: scale(1); }
+        
         #lightbox-close {
-            position: absolute; top: 30px; right: 30px;
-            color: #fff; font-size: 2rem; width: 50px; height: 50px;
-            background: rgba(255,255,255,0.1); border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.1);
+            position: absolute; top: 30px; right: 30px; color: #fff; font-size: 2rem; width: 50px; height: 50px;
+            background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);
         }
-        #lightbox-close:hover { background: var(--primary); }
-        #lightbox-caption {
-            color: #fff; margin-top: 25px; font-size: 1.2rem;
-            font-family: 'Playfair Display', serif; font-style: italic;
-        }
+        #lightbox-close:hover { background: var(--primary); transform: rotate(90deg); }
+        #lightbox-caption { color: #fff; margin-top: 25px; font-size: 1.3rem; font-family: 'Playfair Display', serif; font-style: italic; }
 
+        /* Signature Realistic Font */
         .signature {
-            margin-top: 35px; font-size: 1.2rem;
-            color: var(--primary-light); font-family: 'Playfair Display', serif;
-            font-style: italic; text-align: center;
+            margin-top: 35px; text-align: center;
+        }
+        .signature-text {
+            font-family: 'Dancing Script', cursive; font-size: 2.2rem;
+            color: var(--primary); filter: drop-shadow(0 0 8px var(--primary-glow));
+            transform: rotate(-3deg); display: inline-block;
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Orbs -->
-    <div class="ambient-orb orb-1"></div>
-    <div class="ambient-orb orb-2"></div>
+    <!-- Aurora Background -->
+    <div class="aurora-bg"></div>
+    <div class="aurora-orb orb-pink"></div>
+    <div class="aurora-orb orb-purple"></div>
 
-    <!-- Floating Background Hearts -->
+    <!-- Floating Hearts -->
     <div class="hearts-container">
         <div class="floating-heart" style="left: 15%; animation-delay: 0s;">❤️</div>
         <div class="floating-heart" style="left: 35%; animation-delay: 3s; font-size: 1rem;">💖</div>
@@ -367,7 +247,7 @@
         <!-- Tabs -->
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab(event, 'tab-letter')">Message</button>
-            <button class="tab-btn" onclick="switchTab(event, 'tab-audio')">Voice</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-audio')">Voice Note</button>
             <button class="tab-btn" onclick="switchTab(event, 'tab-secret')">Memories</button>
         </div>
 
@@ -379,32 +259,35 @@
                 <p>I want you to know how much I truly love you. My greatest and most profound desire in this life is simply to be right by your side. Because of that, <span class="highlight">I am going to do whatever it takes to move close to you</span>.</p><br>
                 <p>You are my dream come true, and my absolute intention is that you will be my last girlfriend and my future wife.</p>
             </div>
-            <p style="text-align: center; color: var(--primary-light); font-size: 0.9rem; font-style: italic; opacity: 0.8;">"No matter where we are, my favorite place is always wherever you are."</p>
+            <p style="text-align: center; color: #ff8da1; font-size: 0.9rem; font-style: italic; opacity: 0.8; margin-top: 15px;">"No matter where we are, my favorite place is always wherever you are."</p>
         </div>
 
-        <!-- Tab 2: Custom Audio Player -->
+        <!-- Tab 2: Custom Audio Player with Visualizer -->
         <div id="tab-audio" class="tab-pane">
             <div class="message-box" style="text-align: center; padding: 40px 20px;">
-                <p style="color: var(--primary-light); font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 5px;">A secret message for you</p>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px;">Press play to listen to my voice</p>
+                <p style="color: #ff8da1; font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 5px;">Listen closely...</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px;">A secret voice note just for you.</p>
                 
-                <!-- Hidden Audio Element -->
                 <audio id="myAudio" src="audio.mp3"></audio>
                 
-                <!-- Custom UI -->
                 <div class="custom-player-wrapper">
+                    <!-- Fake Audio Visualizer -->
+                    <div class="visualizer" id="visualizer">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+
                     <div class="player-controls">
                         <button class="play-btn" id="playBtn" onclick="togglePlay()">
-                            <!-- Play Icon -->
                             <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            <!-- Pause Icon (Hidden initially) -->
                             <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                         </button>
                         <div class="progress-container">
                             <div class="progress-bar" id="progressBar" onclick="seekAudio(event)">
                                 <div class="progress-fill" id="progressFill"></div>
                             </div>
-                            <div class="time-info">
+                            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                                 <span id="currentTime">0:00</span>
                                 <span id="durationTime">0:00</span>
                             </div>
@@ -414,30 +297,30 @@
             </div>
         </div>
 
-        <!-- Tab 3: Secret Note & Photos Gallery -->
+        <!-- Tab 3: Memories -->
         <div id="tab-secret" class="tab-pane">
             <div class="message-box" style="text-align: center;">
                 <p style="margin-bottom: 20px; color: #fff;">There is one final thing I want you to know...</p>
                 <button class="btn-custom" onclick="revealSecret()" id="revealBtn">Reveal Memories 📸</button>
                 
                 <div id="secret-reveal" class="secret-box">
-                    <p style="color: var(--primary-light); font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 8px;">Anh yêu em rất nhiều! ❤️</p>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Tap any photo to view in full screen</p>
+                    <p style="color: #ff8da1; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 8px;">Anh yêu em rất nhiều! ❤️</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Our story in pixels. Tap any photo to enlarge.</p>
                     
-                    <!-- SCROLLABLE PHOTO GALLERY -->
+                    <!-- SCROLLABLE GALLERY WITH STAGGERED ANIMATION -->
                     <div class="photo-scroll-container">
-                        <div class="photo-grid">
-                            <div class="photo-card" onclick="openLightbox(this, 'Our Zodiac <3')"><img src="foto1.jpeg" alt="Memory"><div class="photo-caption">Our Zodiac &lt;3</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, 'Addicted already?')"><img src="foto2.jpeg" alt="Memory"><div class="photo-caption">Addicted already?</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, 'We call each other sometimes...')"><img src="foto3.jpeg" alt="Memory"><div class="photo-caption">We call each other sometimes...</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, '24 years old?')"><img src="foto4.jpeg" alt="Memory"><div class="photo-caption">24 years old?</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, 'First message...')"><img src="foto5.jpeg" alt="Memory"><div class="photo-caption">First message...</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, 'Backflip XD')"><img src="foto6.jpeg" alt="Memory"><div class="photo-caption">Backflip XD</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, '???')"><img src="foto7.jpeg" alt="Memory"><div class="photo-caption">???</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, 'New hair forever <3')"><img src="foto9.jpeg" alt="Memory"><div class="photo-caption">New hair forever &lt;3</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, 'My voiceeee')"><img src="foto10.jpeg" alt="Memory"><div class="photo-caption">My voiceeee</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, 'Bye...')"><img src="foto11.jpeg" alt="Memory"><div class="photo-caption">Bye...</div></div>
-                            <div class="photo-card" onclick="openLightbox(this, 'Only 5 min...')"><img src="foto12.jpeg" alt="Memory"><div class="photo-caption">Only 5 min...</div></div>
+                        <div class="photo-grid" id="photoGrid">
+                            <div class="photo-card" style="transition-delay: 0.05s" onclick="openLightbox(this, 'Our Zodiac <3')"><img src="foto1.jpeg" alt="Memory"><div class="photo-caption">Our Zodiac &lt;3</div></div>
+                            <div class="photo-card" style="transition-delay: 0.1s" onclick="openLightbox(this, 'Addicted already?')"><img src="foto2.jpeg" alt="Memory"><div class="photo-caption">Addicted already?</div></div>
+                            <div class="photo-card" style="transition-delay: 0.15s" onclick="openLightbox(this, 'We call each other sometimes...')"><img src="foto3.jpeg" alt="Memory"><div class="photo-caption">We call each other sometimes...</div></div>
+                            <div class="photo-card" style="transition-delay: 0.2s" onclick="openLightbox(this, '24 years old?')"><img src="foto4.jpeg" alt="Memory"><div class="photo-caption">24 years old?</div></div>
+                            <div class="photo-card" style="transition-delay: 0.25s" onclick="openLightbox(this, 'First message...')"><img src="foto5.jpeg" alt="Memory"><div class="photo-caption">First message...</div></div>
+                            <div class="photo-card" style="transition-delay: 0.3s" onclick="openLightbox(this, 'Backflip XD')"><img src="foto6.jpeg" alt="Memory"><div class="photo-caption">Backflip XD</div></div>
+                            <div class="photo-card" style="transition-delay: 0.35s" onclick="openLightbox(this, '???')"><img src="foto7.jpeg" alt="Memory"><div class="photo-caption">???</div></div>
+                            <div class="photo-card" style="transition-delay: 0.4s" onclick="openLightbox(this, 'New hair forever <3')"><img src="foto9.jpeg" alt="Memory"><div class="photo-caption">New hair forever &lt;3</div></div>
+                            <div class="photo-card" style="transition-delay: 0.45s" onclick="openLightbox(this, 'My voiceeee')"><img src="foto10.jpeg" alt="Memory"><div class="photo-caption">My voiceeee</div></div>
+                            <div class="photo-card" style="transition-delay: 0.5s" onclick="openLightbox(this, 'Bye...')"><img src="foto11.jpeg" alt="Memory"><div class="photo-caption">Bye...</div></div>
+                            <div class="photo-card" style="transition-delay: 0.55s" onclick="openLightbox(this, 'Only 5 min...')"><img src="foto12.jpeg" alt="Memory"><div class="photo-caption">Only 5 min...</div></div>
                         </div>
                     </div>
                 </div>
@@ -445,56 +328,58 @@
         </div>
 
         <div class="signature">
-            With all my love,<br>Jonas
+            <span style="font-size: 0.9rem; color: var(--text-muted); display: block; margin-bottom: 5px;">With all my love,</span>
+            <span class="signature-text">Jonas</span>
         </div>
     </div>
 
     <script>
-        // Start Experience Animation
+        // Start Sequence
         function startExperience() {
             var welcome = document.getElementById("welcome-screen");
             var main = document.getElementById("main-content");
-            
             welcome.style.opacity = "0";
             welcome.style.transform = "scale(0.9) translateY(-20px)";
             
             setTimeout(function() {
                 welcome.style.display = "none";
                 main.style.display = "block";
-                // Trigger reflow to restart animation
-                void main.offsetWidth;
+                void main.offsetWidth; // Trigger reflow
                 main.classList.add("visible");
             }, 600);
         }
 
-        // Tab Switcher
+        // Tab Switching Logic
         function switchTab(evt, tabId) {
             var panes = document.getElementsByClassName("tab-pane");
-            for (var i = 0; i < panes.length; i++) {
-                panes[i].classList.remove("active");
-            }
+            for (var i = 0; i < panes.length; i++) { panes[i].classList.remove("active"); }
             var buttons = document.getElementsByClassName("tab-btn");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
-            }
+            for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove("active"); }
+            
             document.getElementById(tabId).classList.add("active");
             evt.currentTarget.classList.add("active");
             
-            // Pause audio if switching away from audio tab
+            // Auto pause audio if leaving audio tab
             if(tabId !== 'tab-audio') {
                 var audio = document.getElementById('myAudio');
                 if(!audio.paused) togglePlay();
             }
         }
 
-        // Secret Reveal
+        // Cascade Reveal for Gallery
         function revealSecret() {
             document.getElementById("revealBtn").style.display = "none";
             var box = document.getElementById("secret-reveal");
             box.style.display = "block";
+            
+            // Trigger cascade animation for photos
+            setTimeout(() => {
+                var cards = document.querySelectorAll('.photo-card');
+                cards.forEach(card => card.classList.add('show'));
+            }, 100);
         }
 
-        // Custom Audio Player Logic
+        // Audio Player & Visualizer Logic
         var audio = document.getElementById('myAudio');
         var playBtn = document.getElementById('playBtn');
         var playIcon = document.getElementById('playIcon');
@@ -502,6 +387,9 @@
         var progressFill = document.getElementById('progressFill');
         var currentTimeEl = document.getElementById('currentTime');
         var durationTimeEl = document.getElementById('durationTime');
+        var visualizer = document.getElementById('visualizer');
+        var bars = document.querySelectorAll('.bar');
+        var visualizerInterval;
 
         function togglePlay() {
             if (audio.paused) {
@@ -509,62 +397,65 @@
                 playIcon.style.display = 'none';
                 pauseIcon.style.display = 'block';
                 playBtn.classList.add('playing');
+                visualizer.classList.add('active');
+                animateVisualizer();
             } else {
                 audio.pause();
                 playIcon.style.display = 'block';
                 pauseIcon.style.display = 'none';
                 playBtn.classList.remove('playing');
+                visualizer.classList.remove('active');
+                clearInterval(visualizerInterval);
+                bars.forEach(bar => bar.style.height = '4px');
             }
         }
 
-        // Update Progress Bar
+        function animateVisualizer() {
+            visualizerInterval = setInterval(() => {
+                bars.forEach(bar => {
+                    let height = Math.floor(Math.random() * 16) + 4; // Random height between 4px and 20px
+                    bar.style.height = height + 'px';
+                });
+            }, 150);
+        }
+
         audio.addEventListener('timeupdate', function() {
             var progress = (audio.currentTime / audio.duration) * 100;
             progressFill.style.width = progress + '%';
             currentTimeEl.textContent = formatTime(audio.currentTime);
         });
 
-        // Set Duration when audio metadata is loaded
-        audio.addEventListener('loadedmetadata', function() {
-            durationTimeEl.textContent = formatTime(audio.duration);
-        });
+        audio.addEventListener('loadedmetadata', function() { durationTimeEl.textContent = formatTime(audio.duration); });
 
-        // Audio ended
         audio.addEventListener('ended', function() {
-            playIcon.style.display = 'block';
-            pauseIcon.style.display = 'none';
-            playBtn.classList.remove('playing');
-            progressFill.style.width = '0%';
+            playIcon.style.display = 'block'; pauseIcon.style.display = 'none';
+            playBtn.classList.remove('playing'); progressFill.style.width = '0%';
             currentTimeEl.textContent = '0:00';
+            visualizer.classList.remove('active'); clearInterval(visualizerInterval);
+            bars.forEach(bar => bar.style.height = '4px');
         });
 
-        // Click to seek
         function seekAudio(e) {
             var bar = document.getElementById('progressBar');
             var percent = e.offsetX / bar.offsetWidth;
             audio.currentTime = percent * audio.duration;
         }
 
-        // Format Time Helper
         function formatTime(seconds) {
             if (isNaN(seconds)) return "0:00";
-            var min = Math.floor(seconds / 60);
-            var sec = Math.floor(seconds % 60);
+            var min = Math.floor(seconds / 60); var sec = Math.floor(seconds % 60);
             return min + ':' + (sec < 10 ? '0' + sec : sec);
         }
 
-        // Lightbox Functions
+        // Spatial Lightbox
         function openLightbox(cardElement, captionText) {
             var lightbox = document.getElementById("lightbox");
             var lightboxImg = document.getElementById("lightbox-img");
             var lightboxCaption = document.getElementById("lightbox-caption");
-            var imgSource = cardElement.querySelector('img').src; // Get img src from inside the card
+            var imgSource = cardElement.querySelector('img').src;
 
             lightbox.style.display = "flex";
-            // small delay for transition
-            setTimeout(function() {
-                lightbox.classList.add("visible");
-            }, 10);
+            setTimeout(function() { lightbox.classList.add("visible"); }, 10);
             lightboxImg.src = imgSource;
             lightboxCaption.innerText = captionText;
         }
@@ -572,9 +463,7 @@
         function closeLightbox() {
             var lightbox = document.getElementById("lightbox");
             lightbox.classList.remove("visible");
-            setTimeout(function() {
-                lightbox.style.display = "none";
-            }, 300); // match css transition time
+            setTimeout(function() { lightbox.style.display = "none"; }, 400);
         }
     </script>
 </body>
