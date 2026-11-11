@@ -250,11 +250,54 @@
             object-fit: contain;
             background-color: #000;
             display: block;
+            cursor: pointer; /* Indica que é clicável */
         }
         .photo-caption {
             font-size: 0.8rem;
             color: #ff8da1;
             padding: 6px;
+            text-align: center;
+        }
+
+        /* LIGHTBOX / FULLSCREEN MODAL STYLING */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255, 101, 132, 0.3);
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        #lightbox-close:hover {
+            color: #ff6584;
+        }
+        #lightbox-caption {
+            color: #ff8da1;
+            margin-top: 15px;
+            font-size: 1.1rem;
             text-align: center;
         }
 
@@ -277,6 +320,13 @@
         <div class="floating-heart" style="left: 50%; animation-delay: 1s;">💕</div>
         <div class="floating-heart" style="left: 70%; animation-delay: 3.5s;">❤️</div>
         <div class="floating-heart" style="left: 90%; animation-delay: 1.8s;">💗</div>
+    </div>
+
+    <!-- Fullscreen Lightbox Modal -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Full view">
+        <div id="lightbox-caption"></div>
     </div>
 
     <!-- Step 1: Welcome / Connection Screen -->
@@ -305,13 +355,13 @@
                 <br>
                 <p>Today is all about celebrating <span class="highlight">you</span> — your smile, your kind heart, and the radiant light you bring into my life every single day. Long calls, different time zones, and screen pixels could never change how deeply I care about you.</p>
             </div>
-            <p style="text-align: center; color: #ff8da1; font-size: 0.95rem; font-style: italic;">"No matter where we are, my favorite place is always wherever you are."</p>
+            <p style="text-align: center; color: #ff6584; font-size: 0.95rem; font-style: italic;">"No matter where we are, my favorite place is always wherever you are."</p>
         </div>
 
         <!-- Tab 2: Audio Note -->
         <div id="tab-audio" class="tab-pane">
             <div class="audio-container">
-                <p style="color: #ff8da1; font-weight: bold; margin-bottom: 5px;">A secret message recorded just for you 🎙️</p>
+                <p style="color: #ff6584; font-weight: bold; margin-bottom: 5px;">A secret message recorded just for you 🎙️</p>
                 <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 15px;">Press play to listen to my voice:</p>
                 <audio controls>
                     <source src="audio.mp3" type="audio/mp3">
@@ -327,24 +377,24 @@
                 <button class="btn-custom" onclick="revealSecret()">Reveal Memories 📸</button>
                 
                 <div id="secret-reveal" class="secret-box">
-                    <p style="color: #ff8da1; font-weight: bold; font-size: 1.05rem; margin-bottom: 5px;">Anh yêu em rất nhiều! ❤️</p>
-                    <p style="font-size: 0.85rem; color: #e2e8f0; margin-bottom: 10px;">Our special moments together:</p>
+                    <p style="color: #ff6584; font-weight: bold; font-size: 1.05rem; margin-bottom: 5px;">Anh yêu em rất nhiều! ❤️</p>
+                    <p style="font-size: 0.85rem; color: #e2e8f0; margin-bottom: 10px;">Tap any photo to view in full screen:</p>
                     
                     <!-- SCROLLABLE PHOTO GALLERY FOR 12 PHOTOS -->
                     <div class="photo-scroll-container">
                         <div class="photo-grid">
-                            <div class="photo-card"><img src="foto1.jpeg" alt="Memory 1"><div class="photo-caption">Moment #1</div></div>
-                            <div class="photo-card"><img src="foto2.jpeg" alt="Memory 2"><div class="photo-caption">Moment #2</div></div>
-                            <div class="photo-card"><img src="foto3.jpeg" alt="Memory 3"><div class="photo-caption">Moment #3</div></div>
-                            <div class="photo-card"><img src="foto4.jpeg" alt="Memory 4"><div class="photo-caption">Moment #4</div></div>
-                            <div class="photo-card"><img src="foto5.jpeg" alt="Memory 5"><div class="photo-caption">Moment #5</div></div>
-                            <div class="photo-card"><img src="foto6.jpeg" alt="Memory 6"><div class="photo-caption">Moment #6</div></div>
-                            <div class="photo-card"><img src="foto7.jpeg" alt="Memory 7"><div class="photo-caption">Moment #7</div></div>
-                            <div class="photo-card"><img src="foto8.jpeg" alt="Memory 8"><div class="photo-caption">Moment #8</div></div>
-                            <div class="photo-card"><img src="foto9.jpeg" alt="Memory 9"><div class="photo-caption">Moment #9</div></div>
-                            <div class="photo-card"><img src="foto10.jpeg" alt="Memory 10"><div class="photo-caption">Moment #10</div></div>
-                            <div class="photo-card"><img src="foto11.jpeg" alt="Memory 11"><div class="photo-caption">Moment #11</div></div>
-                            <div class="photo-card"><img src="foto12.jpeg" alt="Memory 12"><div class="photo-caption">Moment #12</div></div>
+                            <div class="photo-card"><img src="foto1.jpeg" alt="Memory 1" onclick="openLightbox(this, 'Moment #1')"><div class="photo-caption">Moment #1</div></div>
+                            <div class="photo-card"><img src="foto2.jpeg" alt="Memory 2" onclick="openLightbox(this, 'Moment #2')"><div class="photo-caption">Moment #2</div></div>
+                            <div class="photo-card"><img src="foto3.jpeg" alt="Memory 3" onclick="openLightbox(this, 'Moment #3')"><div class="photo-caption">Moment #3</div></div>
+                            <div class="photo-card"><img src="foto4.jpeg" alt="Memory 4" onclick="openLightbox(this, 'Moment #4')"><div class="photo-caption">Moment #4</div></div>
+                            <div class="photo-card"><img src="foto5.jpeg" alt="Memory 5" onclick="openLightbox(this, 'Moment #5')"><div class="photo-caption">Moment #5</div></div>
+                            <div class="photo-card"><img src="foto6.jpeg" alt="Memory 6" onclick="openLightbox(this, 'Moment #6')"><div class="photo-caption">Moment #6</div></div>
+                            <div class="photo-card"><img src="foto7.jpeg" alt="Memory 7" onclick="openLightbox(this, 'Moment #7')"><div class="photo-caption">Moment #7</div></div>
+                            <div class="photo-card"><img src="foto8.jpeg" alt="Memory 8" onclick="openLightbox(this, 'Moment #8')"><div class="photo-caption">Moment #8</div></div>
+                            <div class="photo-card"><img src="foto9.jpeg" alt="Memory 9" onclick="openLightbox(this, 'Moment #9')"><div class="photo-caption">Moment #9</div></div>
+                            <div class="photo-card"><img src="foto10.jpeg" alt="Memory 10" onclick="openLightbox(this, 'Moment #10')"><div class="photo-caption">Moment #10</div></div>
+                            <div class="photo-card"><img src="foto11.jpeg" alt="Memory 11" onclick="openLightbox(this, 'Moment #11')"><div class="photo-caption">Moment #11</div></div>
+                            <div class="photo-card"><img src="foto12.jpeg" alt="Memory 12" onclick="openLightbox(this, 'Moment #12')"><div class="photo-caption">Moment #12</div></div>
                         </div>
                     </div>
                 </div>
@@ -387,6 +437,22 @@
         function revealSecret() {
             var box = document.getElementById("secret-reveal");
             box.style.display = "block";
+        }
+
+        /* Lightbox Functions */
+        function openLightbox(imgElement, captionText) {
+            var lightbox = document.getElementById("lightbox");
+            var lightboxImg = document.getElementById("lightbox-img");
+            var lightboxCaption = document.getElementById("lightbox-caption");
+
+            lightbox.style.display = "flex";
+            lightboxImg.src = imgElement.src;
+            lightboxCaption.innerText = captionText;
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById("lightbox");
+            lightbox.style.display = "none";
         }
     </script>
 
