@@ -214,7 +214,7 @@
             animation: fadeIn 0.5s ease;
         }
 
-        /* Scrollable Photo Grid for 12 photos */
+        /* Scrollable Photo Grid */
         .photo-scroll-container {
             max-height: 380px;
             overflow-y: auto;
@@ -250,7 +250,7 @@
             object-fit: contain;
             background-color: #000;
             display: block;
-            cursor: pointer; /* Indica que é clicável */
+            cursor: pointer;
         }
         .photo-caption {
             font-size: 0.8rem;
@@ -370,7 +370,7 @@
             </div>
         </div>
 
-        <!-- Tab 3: Secret Note & 12 Photos Gallery -->
+        <!-- Tab 3: Secret Note & Photos Gallery -->
         <div id="tab-secret" class="tab-pane">
             <div class="message-box" style="text-align: center;">
                 <p style="margin-bottom: 15px;">There is one final thing I want you to know...</p>
@@ -380,21 +380,20 @@
                     <p style="color: #ff6584; font-weight: bold; font-size: 1.05rem; margin-bottom: 5px;">Anh yêu em rất nhiều! ❤️</p>
                     <p style="font-size: 0.85rem; color: #e2e8f0; margin-bottom: 10px;">Tap any photo to view in full screen:</p>
                     
-                    <!-- SCROLLABLE PHOTO GALLERY FOR 12 PHOTOS -->
+                    <!-- SCROLLABLE PHOTO GALLERY (Foto 1 até 12, sem a foto 8) -->
                     <div class="photo-scroll-container">
                         <div class="photo-grid">
-                            <div class="photo-card"><img src="foto1.jpeg" alt="Memory 1" onclick="openLightbox(this, 'Moment #1')"><div class="photo-caption">Moment #1</div></div>
-                            <div class="photo-card"><img src="foto2.jpeg" alt="Memory 2" onclick="openLightbox(this, 'Moment #2')"><div class="photo-caption">Moment #2</div></div>
-                            <div class="photo-card"><img src="foto3.jpeg" alt="Memory 3" onclick="openLightbox(this, 'Moment #3')"><div class="photo-caption">Moment #3</div></div>
-                            <div class="photo-card"><img src="foto4.jpeg" alt="Memory 4" onclick="openLightbox(this, 'Moment #4')"><div class="photo-caption">Moment #4</div></div>
-                            <div class="photo-card"><img src="foto5.jpeg" alt="Memory 5" onclick="openLightbox(this, 'Moment #5')"><div class="photo-caption">Moment #5</div></div>
-                            <div class="photo-card"><img src="foto6.jpeg" alt="Memory 6" onclick="openLightbox(this, 'Moment #6')"><div class="photo-caption">Moment #6</div></div>
-                            <div class="photo-card"><img src="foto7.jpeg" alt="Memory 7" onclick="openLightbox(this, 'Moment #7')"><div class="photo-caption">Moment #7</div></div>
-                            <div class="photo-card"><img src="foto8.jpeg" alt="Memory 8" onclick="openLightbox(this, 'Moment #8')"><div class="photo-caption">Moment #8</div></div>
-                            <div class="photo-card"><img src="foto9.jpeg" alt="Memory 9" onclick="openLightbox(this, 'Moment #9')"><div class="photo-caption">Moment #9</div></div>
-                            <div class="photo-card"><img src="foto10.jpeg" alt="Memory 10" onclick="openLightbox(this, 'Moment #10')"><div class="photo-caption">Moment #10</div></div>
-                            <div class="photo-card"><img src="foto11.jpeg" alt="Memory 11" onclick="openLightbox(this, 'Moment #11')"><div class="photo-caption">Moment #11</div></div>
-                            <div class="photo-card"><img src="foto12.jpeg" alt="Memory 12" onclick="openLightbox(this, 'Moment #12')"><div class="photo-caption">Moment #12</div></div>
+                            <div class="photo-card"><img src="foto1.jpeg" alt="Memory 1" onclick="openLightbox(this, 'Our Zodiac <3')"><div class="photo-caption">Our Zodiac &lt;3</div></div>
+                            <div class="photo-card"><img src="foto2.jpeg" alt="Memory 2" onclick="openLightbox(this, 'Addicted already?')"><div class="photo-caption">Addicted already?</div></div>
+                            <div class="photo-card"><img src="foto3.jpeg" alt="Memory 3" onclick="openLightbox(this, 'We call each other sometimes...')"><div class="photo-caption">We call each other sometimes...</div></div>
+                            <div class="photo-card"><img src="foto4.jpeg" alt="Memory 4" onclick="openLightbox(this, '24 years old?')"><div class="photo-caption">24 years old?</div></div>
+                            <div class="photo-card"><img src="foto5.jpeg" alt="Memory 5" onclick="openLightbox(this, 'First message...')"><div class="photo-caption">First message...</div></div>
+                            <div class="photo-card"><img src="foto6.jpeg" alt="Memory 6" onclick="openLightbox(this, 'Backflip XD')"><div class="photo-caption">Backflip XD</div></div>
+                            <div class="photo-card"><img src="foto7.jpeg" alt="Memory 7" onclick="openLightbox(this, '???')"><div class="photo-caption">???</div></div>
+                            <div class="photo-card"><img src="foto9.jpeg" alt="Memory 9" onclick="openLightbox(this, 'New hair forever <3')"><div class="photo-caption">New hair forever &lt;3</div></div>
+                            <div class="photo-card"><img src="foto10.jpeg" alt="Memory 10" onclick="openLightbox(this, 'My voiceeee')"><div class="photo-caption">My voiceeee</div></div>
+                            <div class="photo-card"><img src="foto11.jpeg" alt="Memory 11" onclick="openLightbox(this, 'Bye...')"><div class="photo-caption">Bye...</div></div>
+                            <div class="photo-card"><img src="foto12.jpeg" alt="Memory 12" onclick="openLightbox(this, 'Only 5 min...')"><div class="photo-caption">Only 5 min...</div></div>
                         </div>
                     </div>
                 </div>
