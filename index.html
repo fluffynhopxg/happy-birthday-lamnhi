@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Lâm Nhi! ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ff6584;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #a0aec0;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        .message {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .highlight {
+            color: #ff6584;
+            font-weight: bold;
+        }
+        .signature {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: #ff6584;
+            font-weight: bold;
+        }
+        /* Floating hearts background animation */
+        .heart {
+            position: absolute;
+            color: rgba(255, 101, 132, 0.3);
+            font-size: 1.2rem;
+            animation: float 6s infinite linear;
+            z-index: 1;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Hearts -->
+    <div class="heart" style="left: 10%; animation-duration: 5s;">❤️</div>
+    <div class="heart" style="left: 30%; animation-duration: 7s; animation-delay: 1s;">💖</div>
+    <div class="heart" style="left: 50%; animation-duration: 6s; animation-delay: 2s;">❤️</div>
+    <div class="heart" style="left: 70%; animation-duration: 8s; animation-delay: 0.5s;">💕</div>
+    <div class="heart" style="left: 90%; animation-duration: 5.5s; animation-delay: 1.5s;">❤️</div>
+
+    <div class="card">
+        <h1>Chúc mừng sinh nhật, Em yêu! 🎉</h1>
+        <div class="subtitle">Happy Birthday to the most special person in my world.</div>
+        
+        <div class="message">
+            <p>Even though miles and an ocean separate Brazil and Vietnam, distance means nothing when someone means everything to me.</p>
+            <br>
+            <p>Today is all about celebrating <span class="highlight">you</span> — your smile, your kind heart, and the light you bring into my life every single day. Long calls, different time zones, and screen pixels could never change how deeply I care about you.</p>
+            <br>
+            <p>I hope your day is filled with so much happiness, delicious food, and wonderful moments. I am counting down the days until we can finally close this distance.</p>
+            <br>
+            <p style="text-align: center; color: #ff6584; font-weight: bold;">Anh yêu em rất nhiều! ❤️</p>
+        </div>
+
+        <div class="signature">
+            With all my love,<br>
+            Jonas
+        </div>
+    </div>
+
+</body>
+</html>
