@@ -32,7 +32,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 1. Fluid Aurora Background */
+        /* Fluid Aurora Background */
         .aurora-bg {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: linear-gradient(45deg, #05020a, #1a0b1c, #0d0614);
@@ -55,7 +55,7 @@
         .floating-heart { position: absolute; bottom: -40px; color: rgba(255, 51, 102, 0.25); filter: drop-shadow(0 0 10px rgba(255,51,102,0.3)); animation: riseUp 12s infinite linear; }
         @keyframes riseUp { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(-115vh) scale(1.5) rotate(360deg); opacity: 0; } }
 
-        /* 2. Spatial Glassmorphism (VisionOS Style) */
+        /* Spatial Glassmorphism */
         .glass-panel {
             background: var(--glass);
             backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
@@ -87,15 +87,16 @@
         h1 { font-family: 'Playfair Display', serif; font-size: 2.3rem; margin-bottom: 5px; background: linear-gradient(135deg, #fff 0%, #ff8da1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .subtitle { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #ff8da1; margin-bottom: 30px; font-style: italic; }
 
-        /* 3. Magnetic Tabs */
+        /* Magnetic Tabs */
         .tabs {
             display: flex; gap: 6px; margin-bottom: 30px; background: rgba(0, 0, 0, 0.3);
             padding: 6px; border-radius: 100px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            flex-wrap: wrap; justify-content: center;
         }
         .tab-btn {
             background: transparent; border: none; color: var(--text-muted); padding: 12px 15px;
             border-radius: 100px; cursor: pointer; font-size: 0.9rem; font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); flex: 1;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); flex: 1; min-width: 90px; text-align: center;
         }
         .tab-btn.active { background: linear-gradient(135deg, var(--primary) 0%, #e83e60 100%); color: #fff; box-shadow: 0 4px 20px var(--primary-glow); }
         .tab-pane { display: none; text-align: left; animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -122,7 +123,7 @@
         .btn-custom:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 40px var(--primary-glow), inset 0 1px 1px rgba(255,255,255,0.3); }
         .btn-custom:active { transform: translateY(0) scale(0.98); }
 
-        /* 4. Advanced Audio Player with Visualizer */
+        /* Advanced Audio Player with Visualizer */
         .custom-player-wrapper {
             background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
             border-radius: 28px; padding: 30px 25px; display: flex; flex-direction: column; gap: 20px;
@@ -142,30 +143,40 @@
         .progress-container { flex: 1; display: flex; flex-direction: column; gap: 10px; }
         .progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; cursor: pointer; overflow: hidden; }
         .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8da1, var(--primary)); border-radius: 10px; transition: width 0.1s linear; }
-        
-        /* Audio Soundwave (Fake CSS Visualizer) */
         .visualizer { display: flex; gap: 4px; align-items: flex-end; height: 20px; justify-content: center; margin-bottom: 5px; opacity: 0; transition: opacity 0.3s; }
         .visualizer.active { opacity: 1; }
         .bar { width: 4px; background: var(--primary); border-radius: 2px; height: 4px; transition: height 0.1s ease; }
-        
         audio { display: none; }
 
-        /* 5. Cascading Bento Gallery */
-        .secret-box { display: none; margin-top: 20px; }
-        .photo-scroll-container { max-height: 420px; overflow-y: auto; padding-right: 8px; margin-top: 20px; scrollbar-width: thin; scrollbar-color: var(--primary-glow) transparent; }
+        /* Integrated Secret Box (Stats & Gallery) */
+        .secret-box { display: none; margin-top: 20px; animation: fadeUp 0.5s ease forwards; }
+
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
+        .stat-card {
+            background: rgba(0, 0, 0, 0.3); border-radius: 20px; padding: 18px 12px;
+            text-align: center; border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .stat-card.full-width { grid-column: span 2; }
+        .stat-card h3 {
+            font-size: 1.8rem; color: var(--primary); font-family: 'Playfair Display', serif;
+            margin-bottom: 4px; text-shadow: 0 0 15px rgba(255,51,102,0.4);
+        }
+        .stat-card p { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Cascading Bento Gallery */
+        .photo-scroll-container { max-height: 420px; overflow-y: auto; padding-right: 8px; margin-top: 15px; scrollbar-width: thin; scrollbar-color: var(--primary-glow) transparent; }
         .photo-scroll-container::-webkit-scrollbar { width: 4px; }
         .photo-scroll-container::-webkit-scrollbar-thumb { background: var(--primary-glow); border-radius: 10px; }
 
         .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        
         .photo-card {
             background: rgba(0,0,0,0.5); border-radius: 20px; overflow: hidden;
             border: 1px solid rgba(255,255,255,0.05); position: relative; cursor: pointer;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: 0; transform: translateY(20px); /* For stagger animation */
+            opacity: 0; transform: translateY(20px);
         }
         .photo-card.show { opacity: 1; transform: translateY(0); }
-        
         .photo-card:hover { transform: translateY(-5px) scale(1.02); border-color: rgba(255, 51, 102, 0.4); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px var(--primary-glow); z-index: 5; }
         .photo-card img { width: 100%; height: 160px; object-fit: contain; background: #020104; display: block; transition: transform 0.5s ease; }
         .photo-card:hover img { transform: scale(1.05); }
@@ -175,7 +186,7 @@
             position: absolute; bottom: 0; width: 100%; backdrop-filter: blur(2px);
         }
 
-        /* 6. Cinematic Lightbox */
+        /* Cinematic Lightbox */
         #lightbox {
             display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(2, 1, 4, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
@@ -189,7 +200,6 @@
             border: 1px solid rgba(255,255,255,0.08); transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         #lightbox.visible img { transform: scale(1); }
-        
         #lightbox-close {
             position: absolute; top: 30px; right: 30px; color: #fff; font-size: 2rem; width: 50px; height: 50px;
             background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center;
@@ -199,14 +209,8 @@
         #lightbox-caption { color: #fff; margin-top: 25px; font-size: 1.3rem; font-family: 'Playfair Display', serif; font-style: italic; }
 
         /* Signature Realistic Font */
-        .signature {
-            margin-top: 35px; text-align: center;
-        }
-        .signature-text {
-            font-family: 'Dancing Script', cursive; font-size: 2.2rem;
-            color: var(--primary); filter: drop-shadow(0 0 8px var(--primary-glow));
-            transform: rotate(-3deg); display: inline-block;
-        }
+        .signature { margin-top: 35px; text-align: center; }
+        .signature-text { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: var(--primary); filter: drop-shadow(0 0 8px var(--primary-glow)); transform: rotate(-3deg); display: inline-block; }
     </style>
 </head>
 <body>
@@ -246,9 +250,9 @@
         
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab(event, 'tab-letter')">Message</button>
-            <button class="tab-btn" onclick="switchTab(event, 'tab-audio')">Voice Note</button>
-            <button class="tab-btn" onclick="switchTab(event, 'tab-secret')">Memories</button>
+            <button class="tab-btn active" onclick="switchTab(event, 'tab-letter')">💌 Message</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-audio')">🎙️ Voice Note</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-secret')">✨ Memories</button>
         </div>
 
         <!-- Tab 1: Letter -->
@@ -271,7 +275,6 @@
                 <audio id="myAudio" src="audio.mp3"></audio>
                 
                 <div class="custom-player-wrapper">
-                    <!-- Fake Audio Visualizer -->
                     <div class="visualizer" id="visualizer">
                         <div class="bar"></div><div class="bar"></div><div class="bar"></div>
                         <div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -297,15 +300,32 @@
             </div>
         </div>
 
-        <!-- Tab 3: Memories -->
+        <!-- Tab 3: Integrated Memories (Stats & Photos) -->
         <div id="tab-secret" class="tab-pane">
             <div class="message-box" style="text-align: center;">
                 <p style="margin-bottom: 20px; color: #fff;">There is one final thing I want you to know...</p>
                 <button class="btn-custom" onclick="revealSecret()" id="revealBtn">Reveal Memories 📸</button>
                 
                 <div id="secret-reveal" class="secret-box">
-                    <p style="color: #ff8da1; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 8px;">Anh yêu em rất nhiều! ❤️</p>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Our story in pixels. Tap any photo to enlarge.</p>
+                    <p style="color: #ff8da1; font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 25px;">Anh yêu em rất nhiều! ❤️</p>
+                    
+                    <!-- Stats Grid (Bento Box) -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>[X]</h3> <!-- Substitua [X] pelo número de "Te amo" do Instagram se desejar -->
+                            <p>Times we said "Te Amo"</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>296h 16m</h3>
+                            <p>Of long calls (Aug - Nov)</p>
+                        </div>
+                        <div class="stat-card full-width">
+                            <h3>17,000 km</h3>
+                            <p>Apart, but closer than ever</p>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Our story in pixels. Tap any photo to enlarge.</p>
                     
                     <!-- SCROLLABLE GALLERY WITH STAGGERED ANIMATION -->
                     <div class="photo-scroll-container">
@@ -334,7 +354,6 @@
     </div>
 
     <script>
-        // Start Sequence
         function startExperience() {
             var welcome = document.getElementById("welcome-screen");
             var main = document.getElementById("main-content");
@@ -344,12 +363,11 @@
             setTimeout(function() {
                 welcome.style.display = "none";
                 main.style.display = "block";
-                void main.offsetWidth; // Trigger reflow
+                void main.offsetWidth; 
                 main.classList.add("visible");
             }, 600);
         }
 
-        // Tab Switching Logic
         function switchTab(evt, tabId) {
             var panes = document.getElementsByClassName("tab-pane");
             for (var i = 0; i < panes.length; i++) { panes[i].classList.remove("active"); }
@@ -359,27 +377,23 @@
             document.getElementById(tabId).classList.add("active");
             evt.currentTarget.classList.add("active");
             
-            // Auto pause audio if leaving audio tab
-            if(tabId !== 'tab-audio') {
-                var audio = document.getElementById('myAudio');
-                if(!audio.paused) togglePlay();
-            }
+            // Pausar áudio ao trocar de aba
+            var audio = document.getElementById('myAudio');
+            if(!audio.paused) togglePlay();
         }
 
-        // Cascade Reveal for Gallery
         function revealSecret() {
             document.getElementById("revealBtn").style.display = "none";
             var box = document.getElementById("secret-reveal");
             box.style.display = "block";
             
-            // Trigger cascade animation for photos
             setTimeout(() => {
                 var cards = document.querySelectorAll('.photo-card');
                 cards.forEach(card => card.classList.add('show'));
             }, 100);
         }
 
-        // Audio Player & Visualizer Logic
+        // Custom Audio Logic
         var audio = document.getElementById('myAudio');
         var playBtn = document.getElementById('playBtn');
         var playIcon = document.getElementById('playIcon');
@@ -394,17 +408,13 @@
         function togglePlay() {
             if (audio.paused) {
                 audio.play();
-                playIcon.style.display = 'none';
-                pauseIcon.style.display = 'block';
-                playBtn.classList.add('playing');
-                visualizer.classList.add('active');
+                playIcon.style.display = 'none'; pauseIcon.style.display = 'block';
+                playBtn.classList.add('playing'); visualizer.classList.add('active');
                 animateVisualizer();
             } else {
                 audio.pause();
-                playIcon.style.display = 'block';
-                pauseIcon.style.display = 'none';
-                playBtn.classList.remove('playing');
-                visualizer.classList.remove('active');
+                playIcon.style.display = 'block'; pauseIcon.style.display = 'none';
+                playBtn.classList.remove('playing'); visualizer.classList.remove('active');
                 clearInterval(visualizerInterval);
                 bars.forEach(bar => bar.style.height = '4px');
             }
@@ -413,7 +423,7 @@
         function animateVisualizer() {
             visualizerInterval = setInterval(() => {
                 bars.forEach(bar => {
-                    let height = Math.floor(Math.random() * 16) + 4; // Random height between 4px and 20px
+                    let height = Math.floor(Math.random() * 16) + 4;
                     bar.style.height = height + 'px';
                 });
             }, 150);
@@ -447,7 +457,7 @@
             return min + ':' + (sec < 10 ? '0' + sec : sec);
         }
 
-        // Spatial Lightbox
+        // Lightbox
         function openLightbox(cardElement, captionText) {
             var lightbox = document.getElementById("lightbox");
             var lightboxImg = document.getElementById("lightbox-img");
